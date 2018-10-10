@@ -1,15 +1,19 @@
 package Controller;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 class CalculoTrocoTest {
 
-	@Test(expected = Exception.class)
+	@Test
 	void quando_validarSeValorEtradaMenorPrecoProduto_deveRetornarException() throws Exception {
 		CalculoTroco cal = new CalculoTroco();
-		cal.calcular(1000, 2000);
+		assertThrows(Exception.class,
+	            ()->{
+	            	cal.calcular(1000.0F, 2000.0F);
+	            });
 	}
 	
 	@Test
