@@ -8,7 +8,9 @@ public class CalculoTroco {
 	private List<Integer> notas = Arrays.asList(100, 50, 20, 10, 5, 1);
 	private List<Integer> moedas = Arrays.asList(100, 50, 10, 5, 1);
 	
-	public Integer calcular(Float dinheiro, Float precoProduto) throws Exception {
+	
+	public Troco calcular(Float dinheiro, Float precoProduto) throws Exception {
+		
 		if(dinheiro < precoProduto) {
 			throw new Exception("O preço do produto é maior que o valor pago");
 		}
@@ -18,16 +20,21 @@ public class CalculoTroco {
 		Float trocoTotal = (dinheiro - precoProduto);
 		Integer trocoNotas = trocoTotal.intValue();
 		
+		int i = 0;
+		int[] qtdNota = new int[] {0,0,0,0,0,0};
+		int[] qtdMoeda = new int[] {0,0,0,0,0};
 		for(Integer nota : notas) {
 			if(trocoNotas >= nota) {
 				qtdNotas = trocoNotas / nota;
 				trocoNotas = trocoNotas % nota;
-				if(qtdNotas >= 1) {
-					System.out.println("Total de notas: " + qtdNotas +" de R$" + (float) nota);
+				qtdNota[i] = qtdNotas;
+				if(trocoNotas == 0) {
+					break;
 				}
 			}	
+			i++;
 		}
 		
-		return null;
+		return new Troco(qtdNota, qtdMoeda);
 	}
 }
