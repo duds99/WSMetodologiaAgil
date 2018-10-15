@@ -1,10 +1,13 @@
-package Controller;
+package test;
 
 
 import java.util.Arrays;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import Controller.CalculoTroco;
+import Controller.Troco;
 
 public class CalculoTrocoTest {
 
